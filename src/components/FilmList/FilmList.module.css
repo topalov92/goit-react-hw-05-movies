@@ -1,0 +1,19 @@
+.filmList {
+  padding-left: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+}
+
+.filmList > .filmItem:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.link {
+  color: rgba(0, 0, 0, 0.658);
+}
+
+.link:hover,
+.link:focus {
+  color: #000000;
+}
