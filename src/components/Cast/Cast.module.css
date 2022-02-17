@@ -1,0 +1,46 @@
+.castList {
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-right: -30px;
+  margin-bottom: -30px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.image {
+  margin: 15px 0;
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.cast {
+  margin: 0 auto;
+}
+.list {
+  display: flex;
+  text-decoration: none;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 170px;
+  align-items: center;
+  text-align: center;
+}
+
+.notification {
+  margin: 0 auto;
+  display: block;
+  width: 270px;
+  text-align: center;
+  border-bottom: 2px solid tomato;
+}

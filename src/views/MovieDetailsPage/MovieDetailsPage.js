@@ -7,17 +7,21 @@ import {
   useLocation,
   useHistory,
 } from 'react-router-dom';
-import { filmsAPI } from '../../services/filmsAPI';
+import API from '../../services/filmsAPI';
 import { HiChevronDoubleLeft } from 'react-icons/hi';
 
 import Spinner from '../../components/Spinner/Spinner';
-import styles from './MovieDetails.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import styles from '../MovieDetailsPage/MovieDetails.module.css';
 
 const Cast = lazy(() =>
-  import('../Cast/Cast.js' /* webpackChunkName: "cast" */)
+  import('../../components/Cast/Cast.js' /* webpackChunkName: "cast" */)
 );
 const Reviews = lazy(() =>
-  import('../Reviews/Reviews.js' /* webpackChunkName: "reviews" */)
+  import(
+    '../../components/Reviews/Reviews.js' /* webpackChunkName: "reviews" */
+  )
 );
 
 export default function MovieDetailsPage() {
@@ -26,19 +30,40 @@ export default function MovieDetailsPage() {
   const { url, path } = useRouteMatch();
   const { movieId } = useParams();
   const [film, setFilm] = useState(null);
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    filmsAPI.getFilmInfo(movieId).then(setFilm);
+    fetchMoviesById();
   }, [movieId]);
 
-  const onGoBack = () => history.push(location?.state?.from ?? '/');
+  const fetchMoviesById = () => {
+    setLoader(true);
+
+    API.fetchMoviesById(movieId)
+      .then(film => setFilm(film))
+
+      .catch(error => {
+        toast('Trouble. Something is wrong :(');
+        setError(error);
+      })
+
+      .finally(() => setLoader(false));
+  };
+
+  const onGoBack = () => history.push(location?.state?.from || '/films');
 
   return (
     <>
-      <button type="button" className={styles.onGoBackBtn} onClick={onGoBack}>
-        <HiChevronDoubleLeft /> GO Back
-      </button>
-
+      {error && (
+        <p className={styles.notification}>Sorry. Something is wrong.</p>
+      )}
+      {loader && <Spinner />}
+      {film && (
+        <button type="button" className={styles.onGoBackBtn} onClick={onGoBack}>
+          <HiChevronDoubleLeft /> GO Back
+        </button>
+      )}
       {film && (
         <>
           <div className={styles.mainInfo}>
@@ -102,6 +127,7 @@ export default function MovieDetailsPage() {
               <Reviews movieId={movieId} />
             </Route>
           </Suspense>
+          <ToastContainer />
         </>
       )}
     </>
