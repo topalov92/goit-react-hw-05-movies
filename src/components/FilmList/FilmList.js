@@ -3,7 +3,7 @@ import styles from './FilmList.module.css';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-export default function FilmList({ films }) {
+function FilmList({ films }) {
   const location = useLocation();
   return (
     <ul className={styles.filmList}>
@@ -23,3 +23,5 @@ export default function FilmList({ films }) {
     </ul>
   );
 }
+
+export default FilmList;

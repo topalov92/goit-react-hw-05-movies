@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import API from '../../services/filmsAPI';
 import { SearchForm } from '../../components/SearchForm/SearchForm';
-import { FilmList } from '../../components/FilmList/FilmList';
+import FilmList from '../../components/FilmList/FilmList';
 import Spinner from '../../components/Spinner/Spinner';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
