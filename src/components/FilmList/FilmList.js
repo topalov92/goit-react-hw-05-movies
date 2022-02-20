@@ -3,11 +3,11 @@ import styles from './FilmList.module.css';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-function FilmList({ films }) {
+function FilmList({ movies }) {
   const location = useLocation();
   return (
     <ul className={styles.filmList}>
-      {films.map(({ id, title, name }) => (
+      {movies.map(({ id, title, name }) => (
         <li className={styles.filmItem} key={id}>
           <Link
             to={{

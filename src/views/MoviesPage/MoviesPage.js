@@ -10,40 +10,41 @@ import { useHistory, useLocation } from 'react-router-dom';
 export default function MoviesPage() {
   const history = useHistory();
   const location = useLocation();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [films, setFilms] = useState([]);
+
+  const [query, setQuery] = useState('');
+  const [movies, setFilms] = useState([]);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!searchQuery) {
+    if (!query) {
       return;
     }
     fetchMoviesBySearch();
-  }, [searchQuery]);
+  }, [query]);
 
   useEffect(() => {
     const queryBySearch =
-      new URLSearchParams(location.search).get('searchQuery') ?? '';
+      new URLSearchParams(location.search).get('query') ?? '';
     if (queryBySearch) {
-      setSearchQuery(queryBySearch);
+      setQuery(queryBySearch);
     }
   }, [history, location]);
 
   const onSearchQuery = queryBySearch => {
     setFilms([]);
-    setSearchQuery(queryBySearch);
+    setQuery(queryBySearch);
   };
 
   const fetchMoviesBySearch = () => {
     setLoader(true);
 
-    API.fetchMoviesBySearch(searchQuery)
+    API.fetchMoviesBySearch(query)
       .then(({ results }) => setFilms(results))
       .then(
         history.push({
           ...location,
-          search: `query=${searchQuery}`,
+          search: `query=${query}`,
         })
       )
 
@@ -60,7 +61,7 @@ export default function MoviesPage() {
       {error && <p>Sorry. Something is wrong.</p>}
       {loader && <Spinner />}
       {<SearchForm onSubmit={onSearchQuery} />}
-      {films && <FilmList movies={films} />}
+      {movies && <FilmList movies={movies} />}
       <ToastContainer />
     </>
   );

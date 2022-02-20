@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Spinner from '../../components/Spinner/Spinner';
 
 export default function HomePage() {
-  const [films, setFilms] = useState([]);
+  const [movies, setFilms] = useState([]);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);
 
@@ -35,10 +35,10 @@ export default function HomePage() {
         <p className={styles.notification}>Sorry. Something is wrong.</p>
       )}
       {loader && <Spinner />}
-      {films && (
+      {movies && (
         <>
           <h2 className={styles.mainTitle}>Top of this week</h2>{' '}
-          <FilmList films={films} />
+          <FilmList movies={movies} />
           <ToastContainer />
         </>
       )}

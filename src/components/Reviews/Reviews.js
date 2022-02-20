@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import API from '../../services/filmsAPI';
 import styles from './Reviews.module.css';
 import Spinner from '../../components/Spinner/Spinner';
 
-export default function Reviews({ movieId }) {
+export default function Reviews() {
+  const { movieId } = useParams();
+
   const [reviews, setReviews] = useState([]);
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);

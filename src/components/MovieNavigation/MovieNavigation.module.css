@@ -1,0 +1,19 @@
+.main_nav {
+  padding: 5px 45px;
+}
+
+.link {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(211, 148, 13);
+  display: inline-block;
+  text-decoration: none;
+  font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.activeLink {
+  composes: link;
+  color: rgb(212, 165, 36);
+  border-bottom: 2px solid rgb(224, 111, 5);
+}

@@ -1,0 +1,42 @@
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h2,
+h3,
+p,
+li,
+span {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.movie {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.image {
+  margin: 15px 0;
+  width: 250px;
+  object-fit: cover;
+}
+
+.movieOverview {
+  width: 500px;
+}
+
+.overview {
+  text-align: justify;
+}
+
+.list {
+  margin: 0;
+  padding-left: 13px;
+}
+
+.movieDetails {
+  display: flex;
+  justify-content: space-around;
+}
