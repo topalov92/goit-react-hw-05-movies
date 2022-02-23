@@ -43,9 +43,7 @@ export default function App() {
             <MovieDetailsPage />
           </Route>
 
-          <Route>
-            <HomePage />
-          </Route>
+          <Route index element={<HomePage />} />
         </Switch>
       </Suspense>
     </Container>
